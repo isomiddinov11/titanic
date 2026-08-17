@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titanic Bashoratlovchi</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; padding: 20px; display: flex; justify-content: center; }
+        .container { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 400px; }
+        h2 { text-align: center; color: #333; }
+        label { font-weight: bold; margin-top: 10px; display: block; }
+        input, select { width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
+        button:hover { background-color: #218838; }
+        .result { margin-top: 20px; padding: 15px; background-color: #e9ecef; border-radius: 5px; text-align: center; font-weight: bold; font-size: 18px; color: #0056b3; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Titanic Omon Qolish Boti</h2>
+    <form action="/predict" method="POST">
+        
+        <label for="pclass">Chipta sinfi (Pclass):</label>
+        <select name="pclass" required>
+            <option value="1">1-sinf (Boylar)</option>
+            <option value="2">2-sinf (O'rtacha)</option>
+            <option value="3">3-sinf (Arzon)</option>
+        </select>
+
+        <label for="sex">Jinsi:</label>
+        <select name="sex" required>
+            <option value="0">Erkak</option>
+            <option value="1">Ayol</option>
+        </select>
+
+        <label for="age">Yoshi:</label>
+        <input type="number" step="0.1" name="age" placeholder="Masalan: 25" required>
+
+        <label for="sibsp">Birodarlar/Turmush o'rtog'i soni (SibSp):</label>
+        <input type="number" name="sibsp" value="0" required>
+
+        <label for="parch">Ota-ona/Farzandlar soni (Parch):</label>
+        <input type="number" name="parch" value="0" required>
+
+        <label for="fare">Chipta narxi (Fare):</label>
+        <input type="number" step="0.01" name="fare" placeholder="Masalan: 32.50" required>
+
+        <label for="embarked">Qaysi portdan chiqqan (Embarked):</label>
+        <select name="embarked" required>
+            <option value="0">Southampton (S)</option>
+            <option value="1">Cherbourg (C)</option>
+            <option value="2">Queenstown (Q)</option>
+        </select>
+
+        <button type="submit">Bashorat qilish</button>
+    </form>
+
+    {% if prediction_text %}
+    <div class="result">
+        {{ prediction_text }}
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
